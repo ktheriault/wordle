@@ -1,0 +1,32 @@
+.keyboard-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.keyboard-row {
+  display: flex;
+  border-bottom:1px solid black;
+}
+
+.keyboard-row:first-child {
+  border-top: 1px solid black;
+}
+
+.keyboard-key {
+  width: 30px;
+  height: 30px;
+  border-left: 1px solid black;
+  cursor: default;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.keyboard-key:last-child {
+  border-right: 1px solid black;
+}
+
+.keyboard-key-used {
+  background-color:gainsboro;
+}

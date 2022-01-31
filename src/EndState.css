@@ -1,0 +1,11 @@
+.end-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.lose-word {
+  padding: 10px 20px;
+}

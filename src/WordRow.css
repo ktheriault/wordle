@@ -1,0 +1,51 @@
+table {
+  margin: auto;
+}
+
+.word-data {
+  width: 50px;
+  height: 50px;
+  border: 1px solid black;
+}
+
+input {
+  width: 40px;
+  height: 40px;
+  border: none;
+  background-color: inherit;
+  text-align: center;
+  font-size: 30px;
+}
+
+input:focus {
+  outline: none;
+}
+
+input:active {
+  border: none;
+}
+
+input:read-only {
+  cursor: default;
+}
+
+.word-data-editable {
+  cursor: pointer;
+  background-color: cornsilk;
+}
+
+.word-data-editable:hover {
+  background-color: burlywood;
+}
+
+.word-data-correct-place {
+  background-color: green;
+}
+
+.word-data-wrong-place {
+  background-color: gold;
+}
+
+.word-data-wrong-letter {
+  background-color: white;
+}
