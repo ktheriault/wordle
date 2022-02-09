@@ -3,7 +3,7 @@ import Keyboard from './Keyboard';
 import WordRow from './WordRow';
 import LoseState from './LoseState';
 import WinState from './WinState';
-import { getWordFromDictionary } from './utils/dictionary';
+import { getWordFromDictionary, isInDictionary } from './utils/dictionary';
 
 import './WordTable.css'
 
@@ -35,14 +35,12 @@ const GAME_STATUS = {
   LOSE: "LOSE",
 }
 
-function isInDictionary(word) {
-  return true;
-}
+const firstWord = getWordFromDictionary();
 
 function WordTable({
 }) {
   const guessesCount = 6;
-  const [word, setWord] = useState('GENGY');
+  const [word, setWord] = useState(firstWord);
   const [gameStatus, setGameStatus] = useState(GAME_STATUS.PLAYING);
   const [guesses, setGuesses] = useState(createInitialGuesses(word, guessesCount));
   const [currentEditableRow, setCurrentEditableRow] = useState(0);
@@ -87,6 +85,7 @@ function WordTable({
       case "backspace":
         if (letter) {
           setGuessesFunc(rowIndex, letterIndex, '');
+          moveToInput(rowIndex, letterIndex - 1);
         } else if (letterIndex > 0) {
           moveToInput(rowIndex, letterIndex - 1);
         }
@@ -104,7 +103,7 @@ function WordTable({
       return true;
     }
     const guess = guesses[rowIndex].join('');
-    return guess.length != word.length;
+    return guess.length != word.length || !isInDictionary(guess);
   }
 
   const onClickSubmit = (rowIndex) => (e) => {
@@ -170,7 +169,7 @@ function WordTable({
       </table>
       {gameStatus == GAME_STATUS.PLAYING ? (
         <button
-          disabled={isSubmitDisabled(currentEditableRow)}
+          disabled={isSubmitDisabled(currentEditableRow, word)}
           onClick={onClickSubmit(currentEditableRow)}
           className="margin-bottom"
         >

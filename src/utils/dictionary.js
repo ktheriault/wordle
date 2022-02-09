@@ -1,16 +1,28 @@
-const dictionary = {}
+import guessWords from './guessWords';
+import legalWords from './legalWords';
+import extraWords from './extraWords';
 
-function loadDictionary() {
-
-}
-
-
-function getWordFromDictionary(notThisWord) {
-  let check = 0;
-  while (false && check < 5) {
-    check += 1;
+export function getWordFromDictionary(notThisWord) {
+  let guessWordsCount = guessWords.length;
+  console.log(guessWordsCount);
+  let index = Math.floor(Math.random() * guessWordsCount);
+  console.log(index);
+  let word = guessWords[index]
+  console.log(word);
+  if (word === notThisWord) {
+    if (index != 0) {
+      index -= 1
+      word = guessWords[index]
+    } else if (index < guessWordsCount - 1) {
+      index += 1
+      word = guessWords[index]
+    }
   }
-  return 'GHOST';
+  return word;
 }
 
-export default { loadDictionary, getWordFromDictionary }
+export function isInDictionary(word) {
+  return legalWords[word] || extraWords[word];
+}
+
+export default { getWordFromDictionary }
