@@ -46,7 +46,6 @@ function WordTable({
   const [currentEditableRow, setCurrentEditableRow] = useState(0);
   const rowArray = Array.from('x'.repeat(guessesCount));
   const wordArray = Array.from(word);
-  console.log(guesses)
 
   const setGuessesFunc = (rowIndex, letterIndex, letter) => {
     setGuesses(prevGuesses => {
@@ -111,7 +110,6 @@ function WordTable({
   }
 
   const trySubmit = (rowIndex) => {
-    console.log(guesses, rowIndex)
     const guess = guesses[rowIndex].join('');
     if (guess == word) {
       handleEndState(GAME_STATUS.WIN);
@@ -128,7 +126,6 @@ function WordTable({
   }
 
   const handleEndState = (status) => {
-    console.log(status);
     setGameStatus(status)
   }
 

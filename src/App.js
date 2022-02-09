@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import WordTable from './WordTable';
+import { getStupidWord } from './utils/dictionary';
 
 import './App.css';
 
@@ -14,6 +15,9 @@ function App() {
         </div>
         <div className="subtitle">
           But you can play more than once a day!
+        </div>
+        <div className="subsubtitle">
+          And it doesn't have stupid words like {getStupidWord()}
         </div>
       </div>
       <WordTable />

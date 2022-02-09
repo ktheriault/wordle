@@ -4,11 +4,8 @@ import extraWords from './extraWords';
 
 export function getWordFromDictionary(notThisWord) {
   let guessWordsCount = guessWords.length;
-  console.log(guessWordsCount);
   let index = Math.floor(Math.random() * guessWordsCount);
-  console.log(index);
   let word = guessWords[index]
-  console.log(word);
   if (word === notThisWord) {
     if (index != 0) {
       index -= 1
@@ -23,6 +20,16 @@ export function getWordFromDictionary(notThisWord) {
 
 export function isInDictionary(word) {
   return legalWords[word] || extraWords[word];
+}
+
+const stupidWords = [
+  'ARECA',
+  'ZINKY',
+]
+
+export function getStupidWord() {
+  let index = Math.floor(Math.random() * stupidWords.length);
+  return stupidWords[index];
 }
 
 export default { getWordFromDictionary }

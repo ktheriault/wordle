@@ -98,9 +98,6 @@ function WordRow({
   onKeyDownHandler,
 }) {
   const letterStatuses = calculateLetterStatuses(wordArray, fillWordArray, isNotYetUnlocked);
-  if (!isNotYetUnlocked && !isEditable) {
-    console.log(rowIndex, wordArray, fillWordArray, letterStatuses)
-  }
   return (
     <tr>
       {wordArray.map((_, i) => {
