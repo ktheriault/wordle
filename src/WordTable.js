@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Keyboard from './Keyboard';
 import WordRow from './WordRow';
 import LoseState from './LoseState';
@@ -23,8 +23,11 @@ function moveToInput(rowIndex, letterIndex) {
   }
 }
 
+const isProbablyMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+
 const SUBMIT_STATUS = {
   SUCCESS: "SUCCESS",
+  INCORRECT: "INCORRECT",
   NOT_IN_DICTIONARY: "NOT_IN_DICTIONARY",
   NOT_CORRECT_LENGTH: "NOT_CORRECT_LENGTH",
 }
@@ -90,7 +93,7 @@ function WordTable({
         }
         break;
       case "enter":
-        trySubmit(rowIndex);
+        trySubmit(rowIndex, e);
         break;
       default:
         break;
@@ -106,10 +109,10 @@ function WordTable({
   }
 
   const onClickSubmit = (rowIndex) => (e) => {
-    trySubmit(rowIndex)
+    trySubmit(rowIndex);
   }
 
-  const trySubmit = (rowIndex) => {
+  const trySubmit = (rowIndex, e) => {
     const guess = guesses[rowIndex].join('');
     if (guess == word) {
       handleEndState(GAME_STATUS.WIN);
@@ -121,6 +124,7 @@ function WordTable({
     if (!isInDictionary(guess)) {
       return SUBMIT_STATUS.NOT_IN_DICTIONARY;
     }
+    e.preventDefault();
     goToNextRow(rowIndex);
     return SUBMIT_STATUS.INCORRECT;
   }
@@ -135,9 +139,12 @@ function WordTable({
       handleEndState(GAME_STATUS.LOSE);
     } else {
       setCurrentEditableRow(nextRowIndex);
-      moveToInput(nextRowIndex, 0);
     }
   }
+
+  useEffect(() => {
+      moveToInput(currentEditableRow, 0);
+  }, [currentEditableRow]);
 
   const onClickPlayAgain = () => {
     setGuesses(createInitialGuesses(word, guessesCount));

@@ -16,6 +16,7 @@
 .keyboard-key {
   width: 30px;
   height: 30px;
+  font-size: 16px;
   border-left: 1px solid black;
   cursor: default;
   display: flex;
@@ -29,4 +30,31 @@
 
 .keyboard-key-used {
   background-color:gainsboro;
+}
+
+/* Galaxy Fold */
+@media (max-width: 280px) {
+  .keyboard-key {
+    width: 25px;
+    height: 25px;
+    font-size: 14px;
+  }
+}
+
+/* iPad */
+@media (min-width: 600px) {
+  .keyboard-key {
+    width: 50px;
+    height: 50px;
+    font-size: 24px;
+  }
+}
+
+/* probably a computer screen */
+@media (min-width: 913px) {
+  .keyboard-key {
+    width: 30px;
+    height: 30px;
+    font-size: 16px;
+  }
 }

@@ -11,6 +11,7 @@ function Letter({
   isLocked,
   onChangeLetter,
   onKeyDown,
+  onClick,
 }) {
   return (
     <input
@@ -18,8 +19,11 @@ function Letter({
       maxLength={1}
       onKeyDown={onKeyDown}
       onChange={onChangeLetter}
+      onClick={onClick}
       readOnly={isLocked}
       name={name}
+      autoFocus={false}
+      onSubmit={(e) => e.preventDefault()}
     />
   );
 }
