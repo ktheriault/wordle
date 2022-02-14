@@ -51,6 +51,9 @@ function WordTable({
   const wordArray = Array.from(word);
 
   const setGuessesFunc = (rowIndex, letterIndex, letter) => {
+    if (letter.length > 1) {
+      return;
+    }
     setGuesses(prevGuesses => {
       const newRow = [
         ...prevGuesses[rowIndex].slice(0, letterIndex),
@@ -108,11 +111,11 @@ function WordTable({
     return guess.length != word.length || !isInDictionary(guess);
   }
 
-  const onClickSubmit = (rowIndex) => (e) => {
+  const onClickSubmit = (rowIndex) => () => {
     trySubmit(rowIndex);
   }
 
-  const trySubmit = (rowIndex, e) => {
+  const trySubmit = (rowIndex) => {
     const guess = guesses[rowIndex].join('');
     if (guess == word) {
       handleEndState(GAME_STATUS.WIN);
@@ -124,7 +127,6 @@ function WordTable({
     if (!isInDictionary(guess)) {
       return SUBMIT_STATUS.NOT_IN_DICTIONARY;
     }
-    e.preventDefault();
     goToNextRow(rowIndex);
     return SUBMIT_STATUS.INCORRECT;
   }

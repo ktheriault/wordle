@@ -17,7 +17,7 @@ function App() {
           But you can play more than once a day!
         </div>
         <div className="subsubtitle">
-          And it doesn't have stupid words like {getStupidWord()}
+          And it doesn't have obscure words like {getStupidWord()}
         </div>
       </div>
       <WordTable />

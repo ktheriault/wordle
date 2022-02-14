@@ -4,6 +4,8 @@
 let extraWords = {
   "DEIGN": true,
   "FRACK": true,
+  "GAWKS": true,
+  "GAWKY": true,
 }
 
 export default extraWords;
