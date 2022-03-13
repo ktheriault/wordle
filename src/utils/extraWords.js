@@ -6,6 +6,12 @@ let extraWords = {
   "FRACK": true,
   "GAWKS": true,
   "GAWKY": true,
+  "LITER": true,
+  "FIGGY": true,
+  "PUDGY": true,
+  "DOSER": true,
+  "DOZER": true,
+  "SHOGI": true,
 }
 
 export default extraWords;
